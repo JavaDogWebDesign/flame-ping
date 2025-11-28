@@ -132,6 +132,48 @@ export const GeneralSettings = (): JSX.Element => {
           </select>
         </InputGroup>
 
+        {/* HEALTH CHECK ENABLED */}
+        <InputGroup>
+          <label htmlFor="healthCheckEnabled">
+            Enable health check indicator
+          </label>
+          <select
+            id="healthCheckEnabled"
+            name="healthCheckEnabled"
+            value={formData.healthCheckEnabled ? 1 : 0}
+            onChange={(e) => inputChangeHandler(e, { isBool: true })}
+          >
+            <option value={1}>True</option>
+            <option value={0}>False</option>
+          </select>
+          <span>
+            Show a status indicator on app cards that pings the URL to check if
+            the service is online
+          </span>
+        </InputGroup>
+
+        {/* HEALTH CHECK INTERVAL */}
+        {formData.healthCheckEnabled && (
+          <InputGroup>
+            <label htmlFor="healthCheckInterval">
+              Health check interval (seconds)
+            </label>
+            <input
+              type="number"
+              id="healthCheckInterval"
+              name="healthCheckInterval"
+              value={formData.healthCheckInterval}
+              onChange={(e) => inputChangeHandler(e, { isNumber: true })}
+              min={10}
+              max={3600}
+            />
+            <span>
+              How often to check if services are online (minimum 10 seconds,
+              maximum 3600 seconds)
+            </span>
+          </InputGroup>
+        )}
+
         {/* === BOOKMARKS OPTIONS === */}
         <SettingsHeadline text="Bookmarks" />
         {/* PIN CATEGORIES */}

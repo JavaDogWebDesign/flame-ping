@@ -22,6 +22,11 @@
   margin-bottom: -4px;
 }
 
+.AppCardTitle {
+  display: flex;
+  align-items: center;
+}
+
 .AppCardDetails span {
   color: var(--color-accent);
   font-weight: 400;

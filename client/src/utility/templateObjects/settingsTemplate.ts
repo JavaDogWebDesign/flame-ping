@@ -39,6 +39,8 @@ export const generalSettingsTemplate: GeneralForm = {
   useOrdering: 'createdAt',
   appsSameTab: false,
   bookmarksSameTab: false,
+  healthCheckEnabled: false,
+  healthCheckInterval: 60,
 };
 
 export const dockerSettingsTemplate: DockerSettingsForm = {

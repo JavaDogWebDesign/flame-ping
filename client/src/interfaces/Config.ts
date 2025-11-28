@@ -32,4 +32,6 @@ export interface Config {
   isKilometer: boolean;
   weatherData: WeatherData;
   hideDate: boolean;
+  healthCheckEnabled: boolean;
+  healthCheckInterval: number;
 }

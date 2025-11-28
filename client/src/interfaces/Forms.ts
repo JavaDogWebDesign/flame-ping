@@ -17,6 +17,8 @@ export interface GeneralForm {
   useOrdering: string;
   appsSameTab: boolean;
   bookmarksSameTab: boolean;
+  healthCheckEnabled: boolean;
+  healthCheckInterval: number;
 }
 
 export interface UISettingsForm {

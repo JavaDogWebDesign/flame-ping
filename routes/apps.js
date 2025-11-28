@@ -11,6 +11,8 @@ const {
   updateApp,
   deleteApp,
   reorderApps,
+  checkHealth,
+  checkHealthBatch,
 } = require('../controllers/apps');
 
 router
@@ -25,5 +27,9 @@ router
   .delete(auth, requireAuth, deleteApp);
 
 router.route('/0/reorder').put(auth, requireAuth, reorderApps);
+
+// Health check routes (public access for dashboard monitoring)
+router.route('/health-check').post(checkHealth);
+router.route('/health-check/batch').post(checkHealthBatch);
 
 module.exports = router;

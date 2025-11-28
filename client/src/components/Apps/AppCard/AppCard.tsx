@@ -5,6 +5,7 @@ import { iconParser, isImage, isSvg, isUrl, urlParser } from '../../../utility';
 import { App } from '../../../interfaces';
 import { useSelector } from 'react-redux';
 import { State } from '../../../store/reducers';
+import { HealthCheckIndicator } from './HealthCheckIndicator';
 
 interface Props {
   app: App;
@@ -53,7 +54,10 @@ export const AppCard = ({ app }: Props): JSX.Element => {
     >
       <div className={classes.AppCardIcon}>{iconEl}</div>
       <div className={classes.AppCardDetails}>
-        <h5>{app.name}</h5>
+        <h5 className={classes.AppCardTitle}>
+          {app.name}
+          <HealthCheckIndicator url={app.url} />
+        </h5>
         <span>{!app.description.length ? displayUrl : app.description}</span>
       </div>
     </a>
