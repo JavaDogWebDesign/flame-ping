@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { State } from '../../../../store/reducers';
 import classes from './HealthCheckIndicator.module.css';
@@ -13,6 +13,7 @@ type HealthStatus = 'online' | 'offline' | 'checking' | 'disabled';
 export const HealthCheckIndicator = ({ url }: Props): JSX.Element | null => {
   const { config } = useSelector((state: State) => state.config);
   const [status, setStatus] = useState<HealthStatus>('checking');
+  const isFirstCheck = useRef(true);
 
   const checkHealth = useCallback(async () => {
     if (!config.healthCheckEnabled || !url) {
@@ -20,8 +21,13 @@ export const HealthCheckIndicator = ({ url }: Props): JSX.Element | null => {
       return;
     }
 
-    try {
+    // Only show "checking" on the very first check
+    if (isFirstCheck.current) {
       setStatus('checking');
+      isFirstCheck.current = false;
+    }
+
+    try {
       const response = await axios.post('/api/apps/health-check', { url });
       if (response.data.success && response.data.data.status === 'online') {
         setStatus('online');

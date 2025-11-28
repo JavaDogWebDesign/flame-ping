@@ -54,11 +54,11 @@ export const AppCard = ({ app }: Props): JSX.Element => {
     >
       <div className={classes.AppCardIcon}>{iconEl}</div>
       <div className={classes.AppCardDetails}>
-        <h5>{app.name}</h5>
-        <span className={classes.AppCardUrl}>
+        <h5 className={classes.AppCardTitle}>
           <HealthCheckIndicator url={app.url} />
-          {!app.description.length ? displayUrl : app.description}
-        </span>
+          {app.name}
+        </h5>
+        <span>{!app.description.length ? displayUrl : app.description}</span>
       </div>
     </a>
   );
