@@ -19,7 +19,7 @@
   font-size: 1em;
   font-weight: 500;
   color: var(--color-primary);
-  margin-bottom: -4px;
+  margin-bottom: 2px;
 }
 
 .AppCardDetails span {
